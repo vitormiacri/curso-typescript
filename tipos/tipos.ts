@@ -200,3 +200,33 @@ const contato: Contato = {
 };
 
 console.log(contato);
+
+// Desafio
+// Aplicar a tipagem das variáveis no código abaixo:
+
+type Conta = {
+  saldo: number;
+  depositar: (valor: number) => void;
+};
+
+type Correntista = {
+  nome: string;
+  contaBancaria: Conta;
+  contatos: string[];
+};
+
+let contaBancaria: Conta = {
+  saldo: 3456,
+  depositar(valor: number) {
+    this.saldo += valor;
+  }
+};
+
+let correntista: Correntista = {
+  nome: "Ana Silva",
+  contaBancaria,
+  contatos: ["34567890", "98765432"]
+};
+
+correntista.contaBancaria.depositar(3000);
+console.log(correntista);
