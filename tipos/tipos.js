@@ -86,26 +86,64 @@ usuario = {
     nome: "José"
 };
 console.log(usuario);
-// Desafio
-/*
-  Criar um objeto funcionario com:
-    - Array de strings com os nomes dos supervisores
-    - função de bater ponto que recebe a hora (numero) e retorna uma string:
-      - Ponto normal (<= 8)
-      - Fora do horario (> 8)
-*/
-var funcionario;
-funcionario = {
-    supervisores: ["Junior", "Luis", "Lucas"],
-    baterPonto: function (hora) {
-        if (hora <= 8) {
-            return "Ponto normal";
-        }
-        else {
-            return "Ponto fora do horário";
-        }
+function baterPonto(hora) {
+    if (hora <= 8) {
+        return "Ponto normal";
     }
+    else {
+        return "Ponto fora do horário";
+    }
+}
+var funcionario = {
+    supervisores: ["Junior", "Luis", "Lucas"],
+    baterPonto: baterPonto
 };
 console.table(funcionario.supervisores);
 console.log(funcionario.baterPonto(5));
 console.log(funcionario.baterPonto(14));
+var funcionario2 = {
+    supervisores: ["Julia", "Gustavo"],
+    baterPonto: baterPonto
+};
+console.table(funcionario2.supervisores);
+console.log(funcionario2.baterPonto(4));
+console.log(funcionario2.baterPonto(9));
+// Union Types
+var nota = 10;
+console.log("Minha nota \u00E9 " + nota + "!");
+nota = "8";
+console.log("Minha nota \u00E9 " + nota + "!");
+// Chegando tipos
+var valor = 30;
+if (typeof valor === "number") {
+    console.log("É um number");
+}
+else {
+    console.log(typeof valor);
+}
+// Never
+function falha(msg) {
+    throw new Error(msg);
+}
+var produto = {
+    nome: "Vassoura",
+    preco: 12,
+    validaProduto: function () {
+        if (!this.nome || this.nome.trim().length == 0) {
+            falha("Precisa ter um nome");
+        }
+        if (this.preco <= 0) {
+            falha("Preço inválido");
+        }
+    }
+};
+produto.validaProduto();
+// Tipo Null
+var alturaOpcional = 12;
+alturaOpcional = null;
+var contato = {
+    nome: "Fulano",
+    tel1: "987654421",
+    tel2: null
+};
+console.log(contato);

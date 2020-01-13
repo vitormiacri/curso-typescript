@@ -117,22 +117,86 @@ console.log(usuario);
       - Fora do horario (> 8)
 */
 
-let funcionario: {
+// Alias
+type Funcionario = {
   supervisores: string[];
   baterPonto: (hora: number) => string;
 };
 
-funcionario = {
-  supervisores: ["Junior", "Luis", "Lucas"],
-  baterPonto(hora: number): string {
-    if (hora <= 8) {
-      return "Ponto normal";
-    } else {
-      return "Ponto fora do horário";
-    }
+function baterPonto(hora: number): string {
+  if (hora <= 8) {
+    return "Ponto normal";
+  } else {
+    return "Ponto fora do horário";
   }
+}
+
+let funcionario: Funcionario = {
+  supervisores: ["Junior", "Luis", "Lucas"],
+  baterPonto
 };
 
 console.table(funcionario.supervisores);
 console.log(funcionario.baterPonto(5));
 console.log(funcionario.baterPonto(14));
+
+let funcionario2: Funcionario = {
+  supervisores: ["Julia", "Gustavo"],
+  baterPonto
+};
+
+console.table(funcionario2.supervisores);
+console.log(funcionario2.baterPonto(4));
+console.log(funcionario2.baterPonto(9));
+
+// Union Types
+let nota: number | string = 10;
+console.log(`Minha nota é ${nota}!`);
+nota = "8";
+console.log(`Minha nota é ${nota}!`);
+
+// Chegando tipos
+let valor = 30;
+
+if (typeof valor === "number") {
+  console.log("É um number");
+} else {
+  console.log(typeof valor);
+}
+
+// Never
+function falha(msg: string): never {
+  throw new Error(msg);
+}
+
+const produto = {
+  nome: "Vassoura",
+  preco: 12,
+  validaProduto() {
+    if (!this.nome || this.nome.trim().length == 0) {
+      falha("Precisa ter um nome");
+    }
+    if (this.preco <= 0) {
+      falha("Preço inválido");
+    }
+  }
+};
+produto.validaProduto();
+
+// Tipo Null
+let alturaOpcional: null | number = 12;
+alturaOpcional = null;
+
+type Contato = {
+  nome: string;
+  tel1: string;
+  tel2: string | null;
+};
+
+const contato: Contato = {
+  nome: "Fulano",
+  tel1: "987654421",
+  tel2: null
+};
+
+console.log(contato);
