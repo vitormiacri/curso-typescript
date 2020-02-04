@@ -143,3 +143,25 @@ console.log(f40.acelerar());
 console.log(f40.acelerar());
 console.log(f40.frear());
 console.log(f40.frear());
+
+// Getters & Setters
+class Pessoa {
+  private _idade: number = 0;
+
+  get idade(): number {
+    return this._idade;
+  }
+
+  set idade(valor: number) {
+    if (valor >= 0 && valor <= 120) {
+      this._idade = valor;
+    }
+  }
+}
+
+const pessoa1 = new Pessoa();
+pessoa1.idade = 10;
+console.log(pessoa1.idade);
+
+pessoa1.idade = -3;
+console.log(pessoa1.idade);
