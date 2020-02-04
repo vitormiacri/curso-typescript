@@ -68,3 +68,56 @@ const samsungS10 = new Produto("Samsung S10", 3299);
 samsungS10.desconto = 0.1;
 console.log(samsungS10);
 console.log(samsungS10.resumo());
+
+class Carro {
+  private velocidadeAtual: number = 0;
+
+  constructor(
+    public marca: string,
+    public modelo: string,
+    private velocidadeMaxima: number = 200
+  ) {}
+
+  private alterarVelocidade(delta: number): number {
+    const novavelocidade = this.velocidadeAtual + delta;
+    const velocidadeValida =
+      novavelocidade >= 0 && novavelocidade <= this.velocidadeMaxima;
+
+    if (velocidadeValida) {
+      this.velocidadeAtual = novavelocidade;
+    } else {
+      this.velocidadeAtual = delta > 0 ? this.velocidadeMaxima : 0;
+    }
+
+    return this.velocidadeAtual;
+  }
+
+  public acelerar(): number {
+    return this.alterarVelocidade(5);
+  }
+
+  public frear(): number {
+    return this.alterarVelocidade(-5);
+  }
+}
+
+const carro1 = new Carro("Ford", "Ka", 180);
+Array(50)
+  .fill(0)
+  .forEach(() => carro1.acelerar());
+console.log(carro1.acelerar());
+
+Array(20)
+  .fill(0)
+  .forEach(() => carro1.frear());
+console.log(carro1.frear());
+
+//simular erros no TS, mas funciona no javascript puro
+// carro1.velocidadeAtual = 300;
+// console.log("atual => " + carro1.velocidadeAtual);
+
+// carro1.velocidadeMaxima = 500;
+// console.log("maxima => " + carro1.velocidadeMaxima);
+
+// carro1.alterarVelocidade(150);
+// console.log("atual => " + carro1.velocidadeAtual);
