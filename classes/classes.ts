@@ -165,3 +165,28 @@ console.log(pessoa1.idade);
 
 pessoa1.idade = -3;
 console.log(pessoa1.idade);
+
+// Atributos e métodos estáticos
+// - Um método ou atributo estático pertence a classe
+//    ou seja, não é necessário instaciar um objeto para acessar ou
+//    executar um método.
+class Matematica {
+  static PI: number = 3.1416;
+
+  static areaCirc(raio: number): number {
+    return this.PI * raio * raio;
+  }
+}
+
+// const m1 = new Matematica();
+// m1.PI = 4.2;
+// console.log(m1.areaCirc(4));
+
+// const m2 = new Matematica();
+// console.log(m2.areaCirc(4));
+
+// console.log(new Matematica.areaCirc(4));
+console.log(Matematica.areaCirc(4));
+
+console.log((Matematica.PI = 5.1));
+console.log(Matematica.areaCirc(4));
