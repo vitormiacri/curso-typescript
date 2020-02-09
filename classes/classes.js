@@ -151,6 +151,7 @@ console.log(Matematica.areaCirc(4));
 console.log((Matematica.PI = 5.1));
 console.log(Matematica.areaCirc(4));
 // Classe abstrata
+// Não podem ser instanciadas
 class Calculo {
     constructor() {
         this.resultado = 0;
