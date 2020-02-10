@@ -80,3 +80,36 @@ class DiferencaEntreDatas extends OperacaoBinaria<Data, string> {
 const d1 = new Data(1, 2, 2020);
 const d2 = new Data(5, 2, 2021);
 console.log(new DiferencaEntreDatas(d1, d2).executar());
+
+// Desafio Classe Fila
+// Atributo: fila (array)
+// Métodos: entrar, proximo, imprimir
+
+class Fila<T> {
+  private fila: Array<T>;
+
+  constructor(...args: T[]) {
+    this.fila = args;
+  }
+
+  entrar(item: T): void {
+    this.fila.push(item);
+  }
+
+  proximo(): T {
+    const primeiro = this.fila[0];
+    this.fila.splice(0, 1);
+    return primeiro;
+  }
+
+  imprimir(): void {
+    console.log(this.fila);
+  }
+}
+
+const fila = new Fila<string>("Ana", "Bia", "Vitor", "Carina");
+fila.imprimir();
+fila.entrar("Juliana");
+fila.imprimir();
+console.log(fila.proximo());
+fila.imprimir();
